@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
-import "./Carousel.css";
+import "./Carousel.css"; // Import CSS
 
 const images = [
-  "https://source.unsplash.com/random/800x400?nature",
-  "https://source.unsplash.com/random/800x400?water",
-  "https://source.unsplash.com/random/800x400?mountain",
-  "https://source.unsplash.com/random/800x400?forest"
+  "/assets/image1.jpg", // Replace with actual image paths
+  "/assets/image2.jpg",
+  "/assets/image3.jpg",
 ];
 
 const Carousel = () => {
@@ -13,25 +12,19 @@ const Carousel = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      nextSlide();
-    }, 3000); // Change image every 3 seconds
+      setCurrentIndex((prevIndex) =>
+        prevIndex === images.length - 1 ? 0 : prevIndex + 1
+      );
+    }, 3000); // Auto-slide every 3 seconds
 
     return () => clearInterval(interval);
-  }, [currentIndex]);
-
-  const nextSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-  };
-
-  const prevSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
-  };
+  }, []);
 
   return (
     <div className="carousel">
-      <button className="prev" onClick={prevSlide}>&#10094;</button>
-      <img src={images[currentIndex]} alt="carousel slide" className="carousel-image" />
-      <button className="next" onClick={nextSlide}>&#10095;</button>
+      <button className="prev" onClick={() => setCurrentIndex((currentIndex - 1 + images.length) % images.length)}>&#10094;</button>
+      <img src={images[currentIndex]} alt="carousel" className="carousel-image" />
+      <button className="next" onClick={() => setCurrentIndex((currentIndex + 1) % images.length)}>&#10095;</button>
     </div>
   );
 };

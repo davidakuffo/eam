@@ -14,29 +14,18 @@ const Navbar = () => {
 
   return (
     <nav className={`container ${sticky? 'dark-nav' : ''}`}>
-      <img src={logo} alt=''className='logo'/>
+      <a href="/homepage">
+  <img src={logo} alt="Logo" className="logo" />
+</a>
       <ul>
-        <li><a href="/Homepage
-        "> Home</a>
-         
-        </li>
-        <li>
-          About Us
-        </li>
-        <li>Contact Us
-        </li>
-        <li>
-          Galllery
-        </li>
-        <li>
-        Sermons
-        </li>
-        <li>
-          Events
-        </li>
-        <li><button className='btn'>Give</button>       
-        </li>
-      </ul>
+  <li><a href="/Homepage">Home</a></li>
+  <li><a href="/about">About Us</a></li>
+  <li><a href="/contact">Contact Us</a></li>
+  <li><a href="/gallery">Gallery</a></li>
+  <li><a href="/sermons">Sermons</a></li>
+  <li><a href="/events">Events</a></li>
+  <li><button className='btn'><a href="/donate">Give</a></button></li>
+</ul>
     </nav>
   )
 }
